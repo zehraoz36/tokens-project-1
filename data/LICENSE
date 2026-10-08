@@ -1,0 +1,20 @@
+Dataset license: Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+Legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Attribution:
+Renato Andrade, Cesar Teixeira, Nuno Laranjeiro, and Marco Vieira.
+An Empirical Study on the Classification of Bug Reports Using Machine Learning
+- Supplementary Material, version 1.0.0.
+https://doi.org/10.5281/zenodo.7377402
+Official machine-readable license: https://zenodo.org/api/records/7377402
+Paper: https://arxiv.org/abs/2503.00660
+
+The original data were collected and labelled by the source authors and issue
+tracker participants, not by this student project. No endorsement is implied.
+
+Changes: the pilot selects five Python projects. Files under raw/ are unchanged
+CSV members of the original archive. cleaned.jsonl is derived by preprocess.py:
+text normalization, filtering, deduplication and assignment of evaluation splits.
+Exact transformations and counts are documented in README.md and
+../results/data_audit.json. Source hashes are recorded in source.json.

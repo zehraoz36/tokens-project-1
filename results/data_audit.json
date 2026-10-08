@@ -1,0 +1,134 @@
+{
+  "source": "https://zenodo.org/records/7377402",
+  "source_archive_md5": "23d97199eced083cc169e31967bcf5ed",
+  "source_files_sha256": {
+    "github_numpy_numpy_labeled.csv": "d67badec1971568956d620a78c3bdd3027fbf0f685f659e461f55a932b78dde0",
+    "github_pandasdev_pandas_labeled.csv": "5069513bae0db4f6b8abf270e1d7f17ecc7dcb10bcac25b4fd64b0e0deba2705",
+    "github_saltstack_salt_labeled.csv": "c4036463e3f131fb415c240ebc9f26547b81e9fff871a2c77f9151ac848aa778",
+    "github_scipy_scipy_labeled.csv": "78a39e42eefb5d2e5e2fa8b68946cf65f200bb45a7f7a5997ac81728f128cd31",
+    "github_weblateorg_weblate_labeled.csv": "860390ae856b567f3e4097439f2a629796bddd2683bb81c31be75f3e6c243d1c"
+  },
+  "license": "CC-BY-4.0",
+  "seed": 42,
+  "raw_count": 34949,
+  "raw_projects": {
+    "numpy": 6079,
+    "pandas": 9304,
+    "salt": 12397,
+    "scipy": 4586,
+    "weblate": 2583
+  },
+  "raw_labels": {
+    "bug": 25564,
+    "non-bug": 9385
+  },
+  "clean_count": 34614,
+  "removed": {
+    "empty_text": 2,
+    "duplicate_text": 33,
+    "conflicting_label_rows": 300
+  },
+  "transformation_occurrences": {
+    "html_comments": 2820,
+    "urls": 23295,
+    "html_tags": 31652,
+    "code_fence_markers": 82330,
+    "label_template_headings": 12,
+    "markdown_heading_markers": 37100,
+    "html_entities_decoded": 39,
+    "title_prefixes_removed": 9734,
+    "long_texts_truncated": 92
+  },
+  "affected_rows": {
+    "empty_description": 3,
+    "html_tags": 6621,
+    "code_fence_markers": 18315,
+    "title_prefixes_removed": 9691,
+    "html_comments": 1279,
+    "urls": 13560,
+    "markdown_heading_markers": 9677,
+    "long_texts_truncated": 92,
+    "html_entities_decoded": 39,
+    "label_template_headings": 12
+  },
+  "splits": {
+    "random": {
+      "train": {
+        "n": 24229,
+        "classes": {
+          "bug": 17768,
+          "non-bug": 6461
+        },
+        "projects": {
+          "numpy": 4163,
+          "pandas": 6403,
+          "salt": 8661,
+          "scipy": 3196,
+          "weblate": 1806
+        }
+      },
+      "val": {
+        "n": 3462,
+        "classes": {
+          "bug": 2539,
+          "non-bug": 923
+        },
+        "projects": {
+          "numpy": 593,
+          "pandas": 939,
+          "salt": 1228,
+          "scipy": 440,
+          "weblate": 262
+        }
+      },
+      "test": {
+        "n": 6923,
+        "classes": {
+          "bug": 5077,
+          "non-bug": 1846
+        },
+        "projects": {
+          "numpy": 1231,
+          "pandas": 1759,
+          "salt": 2484,
+          "scipy": 934,
+          "weblate": 515
+        }
+      }
+    },
+    "cross_project": {
+      "train": {
+        "n": 27461,
+        "classes": {
+          "bug": 21108,
+          "non-bug": 6353
+        },
+        "projects": {
+          "numpy": 5987,
+          "pandas": 9101,
+          "salt": 12373
+        }
+      },
+      "val": {
+        "n": 2583,
+        "classes": {
+          "bug": 1200,
+          "non-bug": 1383
+        },
+        "projects": {
+          "weblate": 2583
+        }
+      },
+      "test": {
+        "n": 4570,
+        "classes": {
+          "bug": 3076,
+          "non-bug": 1494
+        },
+        "projects": {
+          "scipy": 4570
+        }
+      }
+    }
+  }
+}
