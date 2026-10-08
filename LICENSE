@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 zehraoz36
+Copyright (c) 2026 Team Tokens (COE025, İstinye University)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+This license covers the project scripts and documentation only. Source and
+derived datasets retain CC BY 4.0; see data/LICENSE. Third-party libraries retain
+their respective licenses. This project is not affiliated with the data authors.
