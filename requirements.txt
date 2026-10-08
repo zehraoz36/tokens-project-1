@@ -4,3 +4,4 @@ scipy==1.18.1
 scikit-learn==1.9.1
 torch==2.14.1+cpu
 threadpoolctl==3.7.0
+transformers==5.18.0
