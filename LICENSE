@@ -1,20 +1,25 @@
-Dataset license: Creative Commons Attribution 4.0 International (CC BY 4.0)
-https://creativecommons.org/licenses/by/4.0/
-Legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+MIT License
 
-Attribution:
-Renato Andrade, Cesar Teixeira, Nuno Laranjeiro, and Marco Vieira.
-An Empirical Study on the Classification of Bug Reports Using Machine Learning
-- Supplementary Material, version 1.0.0.
-https://doi.org/10.5281/zenodo.7377402
-Official machine-readable license: https://zenodo.org/api/records/7377402
-Paper: https://arxiv.org/abs/2503.00660
+Copyright (c) 2026 BugHub Pilot contributors
 
-The original data were collected and labelled by the source authors and issue
-tracker participants, not by this student project. No endorsement is implied.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-Changes: the pilot selects five Python projects. Files under raw/ are unchanged
-CSV members of the original archive. cleaned.jsonl is derived by preprocess.py:
-text normalization, filtering, deduplication and assignment of evaluation splits.
-Exact transformations and counts are documented in README.md and
-../results/data_audit.json. Source hashes are recorded in source.json.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+This license covers the new pilot scripts and documentation only. Source and
+derived datasets retain CC BY 4.0; see data/LICENSE. Third-party libraries retain
+their respective licenses. This project is not affiliated with the data authors.
