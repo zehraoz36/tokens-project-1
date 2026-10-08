@@ -17,4 +17,4 @@ Changes: five Python projects are selected. Files under raw/ are unchanged
 CSV members of the original archive. cleaned.jsonl is derived by preprocess.py:
 text normalization, filtering, deduplication and assignment of evaluation splits.
 Exact transformations and counts are documented in README.md and
-../results/data_audit.json. Source hashes are recorded in source.json.
+../results/data_audit.json. Source hashes are recorded in results/data_audit.json.
