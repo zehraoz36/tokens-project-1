@@ -218,3 +218,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project: downloaded archives (Zenodo dataset, GloVe) and saved models
+.download-cache/
+models/
+.DS_Store

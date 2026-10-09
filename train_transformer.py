@@ -109,7 +109,27 @@ def run_scenario(scenario, data, args, device):
                           for key, value in model.state_dict().items()}
 
     model.load_state_dict(best_state)  # the epoch chosen on validation, not on test
-    test = metrics(data["test"][1], predict(model, loaders["test"], device, args.amp))
+    test_predictions = predict(model, loaders["test"], device, args.amp)
+    test = metrics(data["test"][1], test_predictions)
+
+    if not args.limit:
+        # Same export format as train_bert.py, for error analysis (error_analysis.py)
+        import hashlib
+        prediction_path = ROOT / "results" / f"transformer_predictions_{scenario}.csv"
+        prediction_path.parent.mkdir(exist_ok=True)
+        with prediction_path.open("w", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            writer.writerow(["text_sha256", "true_label", "predicted_label"])
+            for text, label, prediction in zip(data["test"][0], data["test"][1], test_predictions):
+                writer.writerow([hashlib.sha256(text.encode("utf-8")).hexdigest(),
+                                 int(label), int(prediction)])
+
+    if args.save_model and scenario == "random" and not args.limit:
+        # selected checkpoint of the random-split model, for predict.py --model <folder>
+        model.save_pretrained(args.save_model)
+        tokenizer.save_pretrained(args.save_model)
+        print(f"Saved the selected random-split model to {args.save_model}", flush=True)
+
     seconds = time.perf_counter() - start
     result = dict(scenario=scenario, model=args.model.split("/")[-1],
                   n_train=len(items["train"]), n_val=len(items["val"]), n_test=len(items["test"]),
@@ -133,6 +153,8 @@ def main():
     parser.add_argument("--lr", type=float, default=2e-5)
     parser.add_argument("--no-amp", dest="amp", action="store_false",
                         help="Disable mixed precision (slower, use if the loss is not finite)")
+    parser.add_argument("--save-model", metavar="FOLDER",
+                        help="Also save the selected random-split model (for the predict.py demo)")
     parser.add_argument("--limit", type=int,
                         help="Quick check: use this many records per split and do not save results")
     args = parser.parse_args()
