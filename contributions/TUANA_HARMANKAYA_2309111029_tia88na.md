@@ -61,5 +61,5 @@ AI assistants supported repository review, verification and BERT script adaptati
 - [Add the Transformers dependency](https://github.com/zehraoz36/tokens-project-1/commit/4662effce6e55397a581075dd61c5b1aa65933ea).
 - [Update raw-file audit hashes and the line-ending note](https://github.com/zehraoz36/tokens-project-1/commit/b52d3769e6bc7bbab2e0cf3ce3f2ddcb35a8e776).
 - [Add the BERT training script and evaluation results](https://github.com/zehraoz36/tokens-project-1/commit/6489cef191e7950de072d1986a06d5fe77fcacde).
-- [Correct a contribution file's student ID](https://github.com/zehraoz36/tokens-project-1/commit/77d527ee8c0400b930401df9cd60d2c7a5047be3).
+
 
