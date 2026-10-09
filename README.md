@@ -62,7 +62,7 @@ All values are percentages. \* The best of the configurations in [Additional exp
 
 - Fine-tuned transformers beat the baseline classical models (TF-IDF logistic regression) by about 4 Macro-F1 points on the random split and 4 to 5 points on the cross-project split. Feature engineering and threshold tuning close about half of that gap.
 - DeBERTa-v3-small (6 layers) matches BERT-base (12 layers) on the random split and is about 0.9 Macro-F1 points better on the unseen project.
-- The Week 3 neural models with GloVe embeddings (TextCNN, BiLSTM) reach 85 to 87 Macro-F1: clearly better than the baseline classical models, on par with the tuned classical models, and 2 to 3 points below the fine-tuned transformers. They train in 1 to 1.5 minutes per scenario on a T4 GPU, against 13 to 14 minutes for DeBERTa.
+- The Week 3 neural models with GloVe embeddings (TextCNN, BiLSTM) reach 85 to 87 Macro-F1: about 2 points better than the baseline classical models, on par with the tuned classical models, and 2 to 3.5 points below the fine-tuned transformers. They train in 1 to 1.5 minutes per scenario on a T4 GPU, against 13 to 14 minutes for DeBERTa.
 - The transformers keep about 90% accuracy on a project they never saw in training (scipy), which suggests they learn general bug-report language rather than only project-specific vocabulary.
 - Both transformers are weaker on the minority class (non-bug): non-bug reports are labelled as bugs more often than the reverse.
 - Naive Bayes with raw word counts has lower accuracy than the majority baseline but much higher Macro-F1: it predicts the non-bug class far more often, which helps the minority class and hurts overall accuracy.
@@ -81,7 +81,7 @@ All values are percentages. \* The best of the configurations in [Additional exp
 | DeBERTa-v3-small | random | 85.0 | 78.0 | 92.2 | 95.0 |
 | DeBERTa-v3-small | unseen project | 87.9 | 82.7 | 91.8 | 94.5 |
 
-Non-bug recall is the weak spot of every model: about one non-bug report in five is labelled as a bug. Precision and recall of all other models are in the matching `*metrics.json` files.
+Non-bug recall is the transformers' weak spot: about one non-bug report in five is labelled as a bug. It is lower still for the TF-IDF baselines (67 to 71% for logistic regression and SVM); only Naive Bayes on raw counts reaches 89 to 97%, by calling most reports non-bug. Precision and recall of every model are in the matching `*metrics.json` files.
 
 ## Additional experiments: feature engineering, class imbalance, ensemble
 
@@ -179,6 +179,8 @@ The model has learned, sensibly, that failure vocabulary means "bug". Its mistak
 
 Records per project (raw): numpy 6,079, pandas 9,304, salt 12,397, scipy 4,586, weblate 2,583.
 
+![Bug / non-bug reports per project after cleaning](results/figures/class_distribution.png)
+
 The labels were assigned by the source authors and issue-tracker participants, not by this project.
 
 ## Preprocessing
@@ -222,13 +224,13 @@ Two fixed scenarios, both created by `preprocess.py` with seed 42 and stored as 
 | BiLSTM | `train_neural.py --model bilstm` | GloVe 100d, one bidirectional LSTM layer (128 units per direction), max + mean pooling, dropout 0.5; same training setup |
 | Paper protocol | `paper_protocol.py` | See [Benchmark against the source paper](#benchmark-against-the-source-paper) |
 
-TextCNN and BiLSTM were trained on a Colab T4 GPU with `colab_runs.ipynb` GloVe covers only about 36% of the 50,000-word vocabulary (18,083 words on the random split): code identifiers, function names and project terms are missing and start from random vectors that are learned during training.
+TextCNN and BiLSTM were trained on a Colab T4 GPU with `colab_runs.ipynb`. GloVe covers only about 36% of the 50,000-word vocabulary (18,083 words on the random split): code identifiers, function names and project terms are missing and start from random vectors that are learned during training.
 
 Both transformer scripts share the same training setup: first 256 tokens per report with padding per batch, AdamW (lr 2e-5, weight decay 0.01), linear warm-up over 6% of the steps, batch size 16, 2 epochs, gradient clipping at 1.0, mixed precision, and checkpoint selection by validation Macro-F1.
 
 ## How to reproduce
 
-### 1. Data and classical models (CPU, a few minutes)
+### 1. Data, classical models and analyses (CPU)
 
 ```bash
 git clone https://github.com/zehraoz36/tokens-project-1.git
