@@ -4,7 +4,7 @@
 
 We classify GitHub issue reports as **bug** or **non-bug** (feature requests, documentation, questions and so on). Issue trackers of large open-source projects receive thousands of reports, and many of the reports filed as bugs are not bugs. An automatic first-pass label helps maintainers triage faster.
 
-We compare a majority baseline, classical machine-learning models (Naive Bayes, linear SVM, logistic regression) and fine-tuned transformers (BERT, DeBERTa-v3) on the same cleaned data, the same fixed splits and the same metric function.
+We compare a majority baseline, classical machine-learning models (Naive Bayes, linear SVM, logistic regression), neural models on GloVe embeddings (TextCNN, BiLSTM) and fine-tuned transformers (BERT, DeBERTa-v3) on the same cleaned data, the same fixed splits and the same metric function.
 
 ## Contents
 
@@ -36,8 +36,10 @@ Test-set results. The primary metric is **Macro-F1**, because the classes are im
 | Logistic regression (PyTorch, SGD) | TF-IDF, 1-2 grams | 83.76 | 75.26 | 89.77 |
 | Logistic regression (scikit-learn) | TF-IDF, 1-2 grams | 88.08 | 83.52 | 92.19 |
 | Best tuned classical* (LR, threshold tuned) | words + chars + 13 features | 88.92 | 85.57 | 92.53 |
-| BERT `bert-base-uncased` | first 256 tokens | 90.52 | **87.81** | 93.56 |
-| DeBERTa-v3 `deberta-v3-small` | first 256 tokens | **90.55** | 87.58 | **93.66** |
+| TextCNN | GloVe 100d, first 256 tokens | 88.78 | 85.21 | 92.47 |
+| BiLSTM | GloVe 100d, first 256 tokens | 89.02 | 85.68 | 92.60 |
+| BERT `bert-base-uncased` | first 256 tokens | **90.52** | **87.81** | 93.56 |
+| DeBERTa-v3 `deberta-v3-small` | first 256 tokens | 90.45 | 87.46 | **93.59** |
 
 **Cross-project split** (train on numpy, pandas and salt; validate on weblate; test on scipy, n = 4,570)
 
@@ -49,15 +51,18 @@ Test-set results. The primary metric is **Macro-F1**, because the classes are im
 | Logistic regression (PyTorch, SGD) | TF-IDF, 1-2 grams | 80.04 | 72.69 | 86.86 |
 | Logistic regression (scikit-learn) | TF-IDF, 1-2 grams | 86.89 | 84.07 | 90.77 |
 | Best tuned classical* (LR + SVM + NB ensemble) | words + chars + 13 features | 88.91 | 87.14 | 91.91 |
+| TextCNN | GloVe 100d, first 256 tokens | 88.01 | 85.78 | 91.41 |
+| BiLSTM | GloVe 100d, first 256 tokens | 88.47 | 86.54 | 91.63 |
 | BERT `bert-base-uncased` | first 256 tokens | 90.02 | 88.26 | 92.81 |
-| DeBERTa-v3 `deberta-v3-small` | first 256 tokens | **90.77** | **89.37** | **93.22** |
+| DeBERTa-v3 `deberta-v3-small` | first 256 tokens | **90.63** | **89.19** | **93.14** |
 
-All values are percentages. \* The best of the configurations in [Additional experiments](#additional-experiments-feature-engineering-class-imbalance-ensemble), selected on validation Macro-F1. Sources: `results/benchmark.csv`, `results/experiments.csv`, `results/bert_benchmark.csv`, `results/transformer_benchmark.csv`. Per-class precision, recall and confusion matrices are in the matching `*metrics.json` files.
+All values are percentages. \* The best of the configurations in [Additional experiments](#additional-experiments-feature-engineering-class-imbalance-ensemble), selected on validation Macro-F1. Sources: `results/benchmark.csv`, `results/experiments.csv`, `results/neural_cnn_benchmark.csv`, `results/neural_bilstm_benchmark.csv`, `results/bert_benchmark.csv`, `results/transformer_benchmark.csv`. The DeBERTa numbers come from the re-run in `colab_runs.ipynb`, which also saved its test predictions; the first run had 87.58 / 89.37 Macro-F1, so GPU run-to-run noise is about 0.1 to 0.2 points. Per-class precision, recall and confusion matrices are in the matching `*metrics.json` files.
 
 **Main findings**
 
 - Fine-tuned transformers beat the baseline classical models (TF-IDF logistic regression) by about 4 Macro-F1 points on the random split and 4 to 5 points on the cross-project split. Feature engineering and threshold tuning close about half of that gap.
-- DeBERTa-v3-small (6 layers) matches BERT-base (12 layers) on the random split and is about 1.1 Macro-F1 points better on the unseen project.
+- DeBERTa-v3-small (6 layers) matches BERT-base (12 layers) on the random split and is about 0.9 Macro-F1 points better on the unseen project.
+- The Week 3 neural models with GloVe embeddings (TextCNN, BiLSTM) reach 85 to 87 Macro-F1: clearly better than the baseline classical models, on par with the tuned classical models, and 2 to 3 points below the fine-tuned transformers. They train in 1 to 1.5 minutes per scenario on a T4 GPU, against 13 to 14 minutes for DeBERTa.
 - The transformers keep about 90% accuracy on a project they never saw in training (scipy), which suggests they learn general bug-report language rather than only project-specific vocabulary.
 - Both transformers are weaker on the minority class (non-bug): non-bug reports are labelled as bugs more often than the reverse.
 - Naive Bayes with raw word counts has lower accuracy than the majority baseline but much higher Macro-F1: it predicts the non-bug class far more often, which helps the minority class and hurts overall accuracy.
@@ -121,7 +126,7 @@ Their protocol differs from ours, so these numbers cannot be put next to our tab
 
 ## Error analysis
 
-`error_analysis.py` joins the saved test predictions with the data and measures where the models fail; `results/error_analysis.json` holds every number below and `results/error_examples.csv` a fixed random sample of 50 misclassified reports per scenario for manual reading. Numbers are for **BERT-base**, the model whose predictions are currently saved (DeBERTa predictions are produced by the Colab notebook).
+`error_analysis.py` joins the saved test predictions with the data and measures where the models fail; `results/error_analysis.json` holds every number below and `results/error_examples.csv` a fixed random sample of 50 misclassified reports per scenario for manual reading. The numbers below are for **BERT-base**; `error_analysis.json` has the same breakdown for DeBERTa, TextCNN, BiLSTM and the best classical model, and the patterns are the same (DeBERTa: 9.5% errors on the random split, 22.0% of non-bugs vs 5.0% of bugs misclassified).
 
 **Where the errors are (random split, 656 errors out of 6,923 = 9.5%)**
 
@@ -141,7 +146,7 @@ Their protocol differs from ours, so these numbers cannot be put next to our tab
 
 The model has learned, sensibly, that failure vocabulary means "bug". Its mistakes are the reports whose wording points the other way from their label.
 
-**The errors are shared across model families.** 466 of BERT's 656 errors (71%) are also made by the best classical model; cross-project 271 of 456 (59%). The hard cases are hard for every approach, which points to the data rather than to one model's weakness.
+**The errors are shared across model families.** 466 of BERT's 656 errors (71%) are also made by the best classical model (cross-project 271 of 456, 59%), and 522 of DeBERTa's 661 errors (79%) are also made by BERT. The hard cases are hard for every approach, which points to the data rather than to one model's weakness.
 
 **Manual review of 50 random BERT errors** (`results/error_examples.csv`, random split)
 
@@ -206,7 +211,7 @@ Two fixed scenarios, both created by `preprocess.py` with seed 42 and stored as 
 | BiLSTM | `train_neural.py --model bilstm` | GloVe 100d, one bidirectional LSTM layer (128 units per direction), max + mean pooling, dropout 0.5; same training setup |
 | Paper protocol | `paper_protocol.py` | See [Benchmark against the source paper](#benchmark-against-the-source-paper) |
 
-TextCNN and BiLSTM are run on GPU with `colab_runs.ipynb`; add their rows to the tables above once `results/neural_*_benchmark.csv` exist (`make_figures.py` adds them to the figure automatically).
+TextCNN and BiLSTM were trained on a Colab T4 GPU with `colab_runs.ipynb` GloVe covers only about 36% of the 50,000-word vocabulary (18,083 words on the random split): code identifiers, function names and project terms are missing and start from random vectors that are learned during training.
 
 Both transformer scripts share the same training setup: first 256 tokens per report with padding per batch, AdamW (lr 2e-5, weight decay 0.01), linear warm-up over 6% of the steps, batch size 16, 2 epochs, gradient clipping at 1.0, mixed precision, and checkpoint selection by validation Macro-F1.
 
@@ -285,7 +290,8 @@ Download the files written to `results/` before the Colab session ends.
 │   ├── bert_benchmark.csv / bert_metrics.json
 │   ├── bert_predictions_{random,cross_project}.csv   # text_sha256, true_label, predicted_label
 │   ├── transformer_benchmark.csv / transformer_metrics.json
-│   ├── transformer_predictions_*.csv, neural_* # after the Colab run
+│   ├── transformer_predictions_{random,cross_project}.csv
+│   ├── neural_{cnn,bilstm}_benchmark.csv / _metrics.json / _predictions_*.csv
 │   ├── experiments.csv / experiments_metrics.json
 │   ├── classical_predictions_{random,cross_project}.csv   # record_id, true, predicted
 │   ├── paper_protocol.csv / paper_protocol.json

@@ -1,5 +1,174 @@
 {
   "random": {
+    "deberta": {
+      "errors": 661,
+      "error_rate": 0.0955,
+      "false_positives_nonbug_called_bug": 406,
+      "false_negatives_bug_called_nonbug": 255,
+      "by_project": {
+        "numpy": {
+          "n": 1231,
+          "errors": 105,
+          "error_rate": 0.0853
+        },
+        "pandas": {
+          "n": 1759,
+          "errors": 152,
+          "error_rate": 0.0864
+        },
+        "salt": {
+          "n": 2484,
+          "errors": 225,
+          "error_rate": 0.0906
+        },
+        "scipy": {
+          "n": 934,
+          "errors": 86,
+          "error_rate": 0.0921
+        },
+        "weblate": {
+          "n": 515,
+          "errors": 93,
+          "error_rate": 0.1806
+        }
+      },
+      "by_true_class": {
+        "non-bug": {
+          "n": 1846,
+          "errors": 406,
+          "error_rate": 0.2199
+        },
+        "bug": {
+          "n": 5077,
+          "errors": 255,
+          "error_rate": 0.0502
+        }
+      },
+      "by_length": {
+        "<50 words": {
+          "n": 1721,
+          "errors": 176,
+          "error_rate": 0.1023
+        },
+        "50-149": {
+          "n": 2762,
+          "errors": 294,
+          "error_rate": 0.1064
+        },
+        "150-399": {
+          "n": 1949,
+          "errors": 162,
+          "error_rate": 0.0831
+        },
+        "400+ (beyond the 256-token limit)": {
+          "n": 491,
+          "errors": 29,
+          "error_rate": 0.0591
+        }
+      },
+      "cues": {
+        "non-bug WITH error / exception words": {
+          "n": 290,
+          "errors": 143,
+          "error_rate": 0.4931
+        },
+        "non-bug WITHOUT error / exception words": {
+          "n": 1556,
+          "errors": 263,
+          "error_rate": 0.169
+        },
+        "bug WITH error / exception words": {
+          "n": 2428,
+          "errors": 41,
+          "error_rate": 0.0169
+        },
+        "bug WITHOUT error / exception words": {
+          "n": 2649,
+          "errors": 214,
+          "error_rate": 0.0808
+        },
+        "non-bug WITH request / docs words": {
+          "n": 1028,
+          "errors": 127,
+          "error_rate": 0.1235
+        },
+        "non-bug WITHOUT request / docs words": {
+          "n": 818,
+          "errors": 279,
+          "error_rate": 0.3411
+        },
+        "bug WITH request / docs words": {
+          "n": 1079,
+          "errors": 124,
+          "error_rate": 0.1149
+        },
+        "bug WITHOUT request / docs words": {
+          "n": 3998,
+          "errors": 131,
+          "error_rate": 0.0328
+        },
+        "non-bug WITH question mark": {
+          "n": 487,
+          "errors": 97,
+          "error_rate": 0.1992
+        },
+        "non-bug WITHOUT question mark": {
+          "n": 1359,
+          "errors": 309,
+          "error_rate": 0.2274
+        },
+        "bug WITH question mark": {
+          "n": 892,
+          "errors": 70,
+          "error_rate": 0.0785
+        },
+        "bug WITHOUT question mark": {
+          "n": 4185,
+          "errors": 185,
+          "error_rate": 0.0442
+        },
+        "non-bug WITH pull-request text": {
+          "n": 189,
+          "errors": 53,
+          "error_rate": 0.2804
+        },
+        "non-bug WITHOUT pull-request text": {
+          "n": 1657,
+          "errors": 353,
+          "error_rate": 0.213
+        },
+        "bug WITH pull-request text": {
+          "n": 556,
+          "errors": 28,
+          "error_rate": 0.0504
+        },
+        "bug WITHOUT pull-request text": {
+          "n": 4521,
+          "errors": 227,
+          "error_rate": 0.0502
+        },
+        "non-bug WITH bug-report template": {
+          "n": 128,
+          "errors": 76,
+          "error_rate": 0.5938
+        },
+        "non-bug WITHOUT bug-report template": {
+          "n": 1718,
+          "errors": 330,
+          "error_rate": 0.1921
+        },
+        "bug WITH bug-report template": {
+          "n": 978,
+          "errors": 31,
+          "error_rate": 0.0317
+        },
+        "bug WITHOUT bug-report template": {
+          "n": 4099,
+          "errors": 224,
+          "error_rate": 0.0546
+        }
+      }
+    },
     "bert": {
       "errors": 656,
       "error_rate": 0.0948,
@@ -338,16 +507,557 @@
         }
       }
     },
+    "cnn": {
+      "errors": 777,
+      "error_rate": 0.1122,
+      "false_positives_nonbug_called_bug": 473,
+      "false_negatives_bug_called_nonbug": 304,
+      "by_project": {
+        "numpy": {
+          "n": 1231,
+          "errors": 123,
+          "error_rate": 0.0999
+        },
+        "pandas": {
+          "n": 1759,
+          "errors": 174,
+          "error_rate": 0.0989
+        },
+        "salt": {
+          "n": 2484,
+          "errors": 259,
+          "error_rate": 0.1043
+        },
+        "scipy": {
+          "n": 934,
+          "errors": 113,
+          "error_rate": 0.121
+        },
+        "weblate": {
+          "n": 515,
+          "errors": 108,
+          "error_rate": 0.2097
+        }
+      },
+      "by_true_class": {
+        "non-bug": {
+          "n": 1846,
+          "errors": 473,
+          "error_rate": 0.2562
+        },
+        "bug": {
+          "n": 5077,
+          "errors": 304,
+          "error_rate": 0.0599
+        }
+      },
+      "by_length": {
+        "<50 words": {
+          "n": 1721,
+          "errors": 201,
+          "error_rate": 0.1168
+        },
+        "50-149": {
+          "n": 2762,
+          "errors": 354,
+          "error_rate": 0.1282
+        },
+        "150-399": {
+          "n": 1949,
+          "errors": 191,
+          "error_rate": 0.098
+        },
+        "400+ (beyond the 256-token limit)": {
+          "n": 491,
+          "errors": 31,
+          "error_rate": 0.0631
+        }
+      },
+      "cues": {
+        "non-bug WITH error / exception words": {
+          "n": 290,
+          "errors": 161,
+          "error_rate": 0.5552
+        },
+        "non-bug WITHOUT error / exception words": {
+          "n": 1556,
+          "errors": 312,
+          "error_rate": 0.2005
+        },
+        "bug WITH error / exception words": {
+          "n": 2428,
+          "errors": 64,
+          "error_rate": 0.0264
+        },
+        "bug WITHOUT error / exception words": {
+          "n": 2649,
+          "errors": 240,
+          "error_rate": 0.0906
+        },
+        "non-bug WITH request / docs words": {
+          "n": 1028,
+          "errors": 162,
+          "error_rate": 0.1576
+        },
+        "non-bug WITHOUT request / docs words": {
+          "n": 818,
+          "errors": 311,
+          "error_rate": 0.3802
+        },
+        "bug WITH request / docs words": {
+          "n": 1079,
+          "errors": 136,
+          "error_rate": 0.126
+        },
+        "bug WITHOUT request / docs words": {
+          "n": 3998,
+          "errors": 168,
+          "error_rate": 0.042
+        },
+        "non-bug WITH question mark": {
+          "n": 487,
+          "errors": 115,
+          "error_rate": 0.2361
+        },
+        "non-bug WITHOUT question mark": {
+          "n": 1359,
+          "errors": 358,
+          "error_rate": 0.2634
+        },
+        "bug WITH question mark": {
+          "n": 892,
+          "errors": 77,
+          "error_rate": 0.0863
+        },
+        "bug WITHOUT question mark": {
+          "n": 4185,
+          "errors": 227,
+          "error_rate": 0.0542
+        },
+        "non-bug WITH pull-request text": {
+          "n": 189,
+          "errors": 51,
+          "error_rate": 0.2698
+        },
+        "non-bug WITHOUT pull-request text": {
+          "n": 1657,
+          "errors": 422,
+          "error_rate": 0.2547
+        },
+        "bug WITH pull-request text": {
+          "n": 556,
+          "errors": 35,
+          "error_rate": 0.0629
+        },
+        "bug WITHOUT pull-request text": {
+          "n": 4521,
+          "errors": 269,
+          "error_rate": 0.0595
+        },
+        "non-bug WITH bug-report template": {
+          "n": 128,
+          "errors": 83,
+          "error_rate": 0.6484
+        },
+        "non-bug WITHOUT bug-report template": {
+          "n": 1718,
+          "errors": 390,
+          "error_rate": 0.227
+        },
+        "bug WITH bug-report template": {
+          "n": 978,
+          "errors": 28,
+          "error_rate": 0.0286
+        },
+        "bug WITHOUT bug-report template": {
+          "n": 4099,
+          "errors": 276,
+          "error_rate": 0.0673
+        }
+      }
+    },
+    "bilstm": {
+      "errors": 760,
+      "error_rate": 0.1098,
+      "false_positives_nonbug_called_bug": 437,
+      "false_negatives_bug_called_nonbug": 323,
+      "by_project": {
+        "numpy": {
+          "n": 1231,
+          "errors": 129,
+          "error_rate": 0.1048
+        },
+        "pandas": {
+          "n": 1759,
+          "errors": 165,
+          "error_rate": 0.0938
+        },
+        "salt": {
+          "n": 2484,
+          "errors": 256,
+          "error_rate": 0.1031
+        },
+        "scipy": {
+          "n": 934,
+          "errors": 105,
+          "error_rate": 0.1124
+        },
+        "weblate": {
+          "n": 515,
+          "errors": 105,
+          "error_rate": 0.2039
+        }
+      },
+      "by_true_class": {
+        "non-bug": {
+          "n": 1846,
+          "errors": 437,
+          "error_rate": 0.2367
+        },
+        "bug": {
+          "n": 5077,
+          "errors": 323,
+          "error_rate": 0.0636
+        }
+      },
+      "by_length": {
+        "<50 words": {
+          "n": 1721,
+          "errors": 203,
+          "error_rate": 0.118
+        },
+        "50-149": {
+          "n": 2762,
+          "errors": 345,
+          "error_rate": 0.1249
+        },
+        "150-399": {
+          "n": 1949,
+          "errors": 176,
+          "error_rate": 0.0903
+        },
+        "400+ (beyond the 256-token limit)": {
+          "n": 491,
+          "errors": 36,
+          "error_rate": 0.0733
+        }
+      },
+      "cues": {
+        "non-bug WITH error / exception words": {
+          "n": 290,
+          "errors": 158,
+          "error_rate": 0.5448
+        },
+        "non-bug WITHOUT error / exception words": {
+          "n": 1556,
+          "errors": 279,
+          "error_rate": 0.1793
+        },
+        "bug WITH error / exception words": {
+          "n": 2428,
+          "errors": 66,
+          "error_rate": 0.0272
+        },
+        "bug WITHOUT error / exception words": {
+          "n": 2649,
+          "errors": 257,
+          "error_rate": 0.097
+        },
+        "non-bug WITH request / docs words": {
+          "n": 1028,
+          "errors": 136,
+          "error_rate": 0.1323
+        },
+        "non-bug WITHOUT request / docs words": {
+          "n": 818,
+          "errors": 301,
+          "error_rate": 0.368
+        },
+        "bug WITH request / docs words": {
+          "n": 1079,
+          "errors": 156,
+          "error_rate": 0.1446
+        },
+        "bug WITHOUT request / docs words": {
+          "n": 3998,
+          "errors": 167,
+          "error_rate": 0.0418
+        },
+        "non-bug WITH question mark": {
+          "n": 487,
+          "errors": 99,
+          "error_rate": 0.2033
+        },
+        "non-bug WITHOUT question mark": {
+          "n": 1359,
+          "errors": 338,
+          "error_rate": 0.2487
+        },
+        "bug WITH question mark": {
+          "n": 892,
+          "errors": 86,
+          "error_rate": 0.0964
+        },
+        "bug WITHOUT question mark": {
+          "n": 4185,
+          "errors": 237,
+          "error_rate": 0.0566
+        },
+        "non-bug WITH pull-request text": {
+          "n": 189,
+          "errors": 45,
+          "error_rate": 0.2381
+        },
+        "non-bug WITHOUT pull-request text": {
+          "n": 1657,
+          "errors": 392,
+          "error_rate": 0.2366
+        },
+        "bug WITH pull-request text": {
+          "n": 556,
+          "errors": 35,
+          "error_rate": 0.0629
+        },
+        "bug WITHOUT pull-request text": {
+          "n": 4521,
+          "errors": 288,
+          "error_rate": 0.0637
+        },
+        "non-bug WITH bug-report template": {
+          "n": 128,
+          "errors": 78,
+          "error_rate": 0.6094
+        },
+        "non-bug WITHOUT bug-report template": {
+          "n": 1718,
+          "errors": 359,
+          "error_rate": 0.209
+        },
+        "bug WITH bug-report template": {
+          "n": 978,
+          "errors": 33,
+          "error_rate": 0.0337
+        },
+        "bug WITHOUT bug-report template": {
+          "n": 4099,
+          "errors": 290,
+          "error_rate": 0.0707
+        }
+      }
+    },
     "agreement": {
+      "deberta vs bert": {
+        "both_wrong": 522,
+        "only_first_wrong": 139,
+        "only_second_wrong": 134,
+        "oracle_accuracy_if_either_right": 0.9246
+      },
+      "deberta vs classical": {
+        "both_wrong": 465,
+        "only_first_wrong": 196,
+        "only_second_wrong": 302,
+        "oracle_accuracy_if_either_right": 0.9328
+      },
+      "deberta vs cnn": {
+        "both_wrong": 479,
+        "only_first_wrong": 182,
+        "only_second_wrong": 298,
+        "oracle_accuracy_if_either_right": 0.9308
+      },
+      "deberta vs bilstm": {
+        "both_wrong": 488,
+        "only_first_wrong": 173,
+        "only_second_wrong": 272,
+        "oracle_accuracy_if_either_right": 0.9295
+      },
       "bert vs classical": {
         "both_wrong": 466,
         "only_first_wrong": 190,
         "only_second_wrong": 301,
         "oracle_accuracy_if_either_right": 0.9327
+      },
+      "bert vs cnn": {
+        "both_wrong": 479,
+        "only_first_wrong": 177,
+        "only_second_wrong": 298,
+        "oracle_accuracy_if_either_right": 0.9308
+      },
+      "bert vs bilstm": {
+        "both_wrong": 488,
+        "only_first_wrong": 168,
+        "only_second_wrong": 272,
+        "oracle_accuracy_if_either_right": 0.9295
+      },
+      "classical vs cnn": {
+        "both_wrong": 524,
+        "only_first_wrong": 243,
+        "only_second_wrong": 253,
+        "oracle_accuracy_if_either_right": 0.9243
+      },
+      "classical vs bilstm": {
+        "both_wrong": 526,
+        "only_first_wrong": 241,
+        "only_second_wrong": 234,
+        "oracle_accuracy_if_either_right": 0.924
+      },
+      "cnn vs bilstm": {
+        "both_wrong": 588,
+        "only_first_wrong": 189,
+        "only_second_wrong": 172,
+        "oracle_accuracy_if_either_right": 0.9151
       }
     }
   },
   "cross_project": {
+    "deberta": {
+      "errors": 428,
+      "error_rate": 0.0937,
+      "false_positives_nonbug_called_bug": 258,
+      "false_negatives_bug_called_nonbug": 170,
+      "by_project": {
+        "scipy": {
+          "n": 4570,
+          "errors": 428,
+          "error_rate": 0.0937
+        }
+      },
+      "by_true_class": {
+        "non-bug": {
+          "n": 1494,
+          "errors": 258,
+          "error_rate": 0.1727
+        },
+        "bug": {
+          "n": 3076,
+          "errors": 170,
+          "error_rate": 0.0553
+        }
+      },
+      "by_length": {
+        "<50 words": {
+          "n": 1038,
+          "errors": 131,
+          "error_rate": 0.1262
+        },
+        "50-149": {
+          "n": 2271,
+          "errors": 208,
+          "error_rate": 0.0916
+        },
+        "150-399": {
+          "n": 1056,
+          "errors": 77,
+          "error_rate": 0.0729
+        },
+        "400+ (beyond the 256-token limit)": {
+          "n": 205,
+          "errors": 12,
+          "error_rate": 0.0585
+        }
+      },
+      "cues": {
+        "non-bug WITH error / exception words": {
+          "n": 162,
+          "errors": 52,
+          "error_rate": 0.321
+        },
+        "non-bug WITHOUT error / exception words": {
+          "n": 1332,
+          "errors": 206,
+          "error_rate": 0.1547
+        },
+        "bug WITH error / exception words": {
+          "n": 1486,
+          "errors": 24,
+          "error_rate": 0.0162
+        },
+        "bug WITHOUT error / exception words": {
+          "n": 1590,
+          "errors": 146,
+          "error_rate": 0.0918
+        },
+        "non-bug WITH request / docs words": {
+          "n": 810,
+          "errors": 84,
+          "error_rate": 0.1037
+        },
+        "non-bug WITHOUT request / docs words": {
+          "n": 684,
+          "errors": 174,
+          "error_rate": 0.2544
+        },
+        "bug WITH request / docs words": {
+          "n": 618,
+          "errors": 62,
+          "error_rate": 0.1003
+        },
+        "bug WITHOUT request / docs words": {
+          "n": 2458,
+          "errors": 108,
+          "error_rate": 0.0439
+        },
+        "non-bug WITH question mark": {
+          "n": 484,
+          "errors": 65,
+          "error_rate": 0.1343
+        },
+        "non-bug WITHOUT question mark": {
+          "n": 1010,
+          "errors": 193,
+          "error_rate": 0.1911
+        },
+        "bug WITH question mark": {
+          "n": 618,
+          "errors": 58,
+          "error_rate": 0.0939
+        },
+        "bug WITHOUT question mark": {
+          "n": 2458,
+          "errors": 112,
+          "error_rate": 0.0456
+        },
+        "non-bug WITH pull-request text": {
+          "n": 298,
+          "errors": 51,
+          "error_rate": 0.1711
+        },
+        "non-bug WITHOUT pull-request text": {
+          "n": 1196,
+          "errors": 207,
+          "error_rate": 0.1731
+        },
+        "bug WITH pull-request text": {
+          "n": 241,
+          "errors": 29,
+          "error_rate": 0.1203
+        },
+        "bug WITHOUT pull-request text": {
+          "n": 2835,
+          "errors": 141,
+          "error_rate": 0.0497
+        },
+        "non-bug WITH bug-report template": {
+          "n": 1,
+          "errors": 1,
+          "error_rate": 1.0
+        },
+        "non-bug WITHOUT bug-report template": {
+          "n": 1493,
+          "errors": 257,
+          "error_rate": 0.1721
+        },
+        "bug WITH bug-report template": {
+          "n": 49,
+          "errors": 0,
+          "error_rate": 0.0
+        },
+        "bug WITHOUT bug-report template": {
+          "n": 3027,
+          "errors": 170,
+          "error_rate": 0.0562
+        }
+      }
+    },
     "bert": {
       "errors": 456,
       "error_rate": 0.0998,
@@ -646,12 +1356,364 @@
         }
       }
     },
+    "cnn": {
+      "errors": 548,
+      "error_rate": 0.1199,
+      "false_positives_nonbug_called_bug": 387,
+      "false_negatives_bug_called_nonbug": 161,
+      "by_project": {
+        "scipy": {
+          "n": 4570,
+          "errors": 548,
+          "error_rate": 0.1199
+        }
+      },
+      "by_true_class": {
+        "non-bug": {
+          "n": 1494,
+          "errors": 387,
+          "error_rate": 0.259
+        },
+        "bug": {
+          "n": 3076,
+          "errors": 161,
+          "error_rate": 0.0523
+        }
+      },
+      "by_length": {
+        "<50 words": {
+          "n": 1038,
+          "errors": 150,
+          "error_rate": 0.1445
+        },
+        "50-149": {
+          "n": 2271,
+          "errors": 267,
+          "error_rate": 0.1176
+        },
+        "150-399": {
+          "n": 1056,
+          "errors": 117,
+          "error_rate": 0.1108
+        },
+        "400+ (beyond the 256-token limit)": {
+          "n": 205,
+          "errors": 14,
+          "error_rate": 0.0683
+        }
+      },
+      "cues": {
+        "non-bug WITH error / exception words": {
+          "n": 162,
+          "errors": 70,
+          "error_rate": 0.4321
+        },
+        "non-bug WITHOUT error / exception words": {
+          "n": 1332,
+          "errors": 317,
+          "error_rate": 0.238
+        },
+        "bug WITH error / exception words": {
+          "n": 1486,
+          "errors": 31,
+          "error_rate": 0.0209
+        },
+        "bug WITHOUT error / exception words": {
+          "n": 1590,
+          "errors": 130,
+          "error_rate": 0.0818
+        },
+        "non-bug WITH request / docs words": {
+          "n": 810,
+          "errors": 131,
+          "error_rate": 0.1617
+        },
+        "non-bug WITHOUT request / docs words": {
+          "n": 684,
+          "errors": 256,
+          "error_rate": 0.3743
+        },
+        "bug WITH request / docs words": {
+          "n": 618,
+          "errors": 59,
+          "error_rate": 0.0955
+        },
+        "bug WITHOUT request / docs words": {
+          "n": 2458,
+          "errors": 102,
+          "error_rate": 0.0415
+        },
+        "non-bug WITH question mark": {
+          "n": 484,
+          "errors": 116,
+          "error_rate": 0.2397
+        },
+        "non-bug WITHOUT question mark": {
+          "n": 1010,
+          "errors": 271,
+          "error_rate": 0.2683
+        },
+        "bug WITH question mark": {
+          "n": 618,
+          "errors": 40,
+          "error_rate": 0.0647
+        },
+        "bug WITHOUT question mark": {
+          "n": 2458,
+          "errors": 121,
+          "error_rate": 0.0492
+        },
+        "non-bug WITH pull-request text": {
+          "n": 298,
+          "errors": 101,
+          "error_rate": 0.3389
+        },
+        "non-bug WITHOUT pull-request text": {
+          "n": 1196,
+          "errors": 286,
+          "error_rate": 0.2391
+        },
+        "bug WITH pull-request text": {
+          "n": 241,
+          "errors": 14,
+          "error_rate": 0.0581
+        },
+        "bug WITHOUT pull-request text": {
+          "n": 2835,
+          "errors": 147,
+          "error_rate": 0.0519
+        },
+        "non-bug WITH bug-report template": {
+          "n": 1,
+          "errors": 1,
+          "error_rate": 1.0
+        },
+        "non-bug WITHOUT bug-report template": {
+          "n": 1493,
+          "errors": 386,
+          "error_rate": 0.2585
+        },
+        "bug WITH bug-report template": {
+          "n": 49,
+          "errors": 0,
+          "error_rate": 0.0
+        },
+        "bug WITHOUT bug-report template": {
+          "n": 3027,
+          "errors": 161,
+          "error_rate": 0.0532
+        }
+      }
+    },
+    "bilstm": {
+      "errors": 527,
+      "error_rate": 0.1153,
+      "false_positives_nonbug_called_bug": 337,
+      "false_negatives_bug_called_nonbug": 190,
+      "by_project": {
+        "scipy": {
+          "n": 4570,
+          "errors": 527,
+          "error_rate": 0.1153
+        }
+      },
+      "by_true_class": {
+        "non-bug": {
+          "n": 1494,
+          "errors": 337,
+          "error_rate": 0.2256
+        },
+        "bug": {
+          "n": 3076,
+          "errors": 190,
+          "error_rate": 0.0618
+        }
+      },
+      "by_length": {
+        "<50 words": {
+          "n": 1038,
+          "errors": 134,
+          "error_rate": 0.1291
+        },
+        "50-149": {
+          "n": 2271,
+          "errors": 258,
+          "error_rate": 0.1136
+        },
+        "150-399": {
+          "n": 1056,
+          "errors": 118,
+          "error_rate": 0.1117
+        },
+        "400+ (beyond the 256-token limit)": {
+          "n": 205,
+          "errors": 17,
+          "error_rate": 0.0829
+        }
+      },
+      "cues": {
+        "non-bug WITH error / exception words": {
+          "n": 162,
+          "errors": 71,
+          "error_rate": 0.4383
+        },
+        "non-bug WITHOUT error / exception words": {
+          "n": 1332,
+          "errors": 266,
+          "error_rate": 0.1997
+        },
+        "bug WITH error / exception words": {
+          "n": 1486,
+          "errors": 40,
+          "error_rate": 0.0269
+        },
+        "bug WITHOUT error / exception words": {
+          "n": 1590,
+          "errors": 150,
+          "error_rate": 0.0943
+        },
+        "non-bug WITH request / docs words": {
+          "n": 810,
+          "errors": 114,
+          "error_rate": 0.1407
+        },
+        "non-bug WITHOUT request / docs words": {
+          "n": 684,
+          "errors": 223,
+          "error_rate": 0.326
+        },
+        "bug WITH request / docs words": {
+          "n": 618,
+          "errors": 62,
+          "error_rate": 0.1003
+        },
+        "bug WITHOUT request / docs words": {
+          "n": 2458,
+          "errors": 128,
+          "error_rate": 0.0521
+        },
+        "non-bug WITH question mark": {
+          "n": 484,
+          "errors": 104,
+          "error_rate": 0.2149
+        },
+        "non-bug WITHOUT question mark": {
+          "n": 1010,
+          "errors": 233,
+          "error_rate": 0.2307
+        },
+        "bug WITH question mark": {
+          "n": 618,
+          "errors": 53,
+          "error_rate": 0.0858
+        },
+        "bug WITHOUT question mark": {
+          "n": 2458,
+          "errors": 137,
+          "error_rate": 0.0557
+        },
+        "non-bug WITH pull-request text": {
+          "n": 298,
+          "errors": 94,
+          "error_rate": 0.3154
+        },
+        "non-bug WITHOUT pull-request text": {
+          "n": 1196,
+          "errors": 243,
+          "error_rate": 0.2032
+        },
+        "bug WITH pull-request text": {
+          "n": 241,
+          "errors": 17,
+          "error_rate": 0.0705
+        },
+        "bug WITHOUT pull-request text": {
+          "n": 2835,
+          "errors": 173,
+          "error_rate": 0.061
+        },
+        "non-bug WITH bug-report template": {
+          "n": 1,
+          "errors": 1,
+          "error_rate": 1.0
+        },
+        "non-bug WITHOUT bug-report template": {
+          "n": 1493,
+          "errors": 336,
+          "error_rate": 0.2251
+        },
+        "bug WITH bug-report template": {
+          "n": 49,
+          "errors": 0,
+          "error_rate": 0.0
+        },
+        "bug WITHOUT bug-report template": {
+          "n": 3027,
+          "errors": 190,
+          "error_rate": 0.0628
+        }
+      }
+    },
     "agreement": {
+      "deberta vs bert": {
+        "both_wrong": 333,
+        "only_first_wrong": 95,
+        "only_second_wrong": 123,
+        "oracle_accuracy_if_either_right": 0.9271
+      },
+      "deberta vs classical": {
+        "both_wrong": 259,
+        "only_first_wrong": 169,
+        "only_second_wrong": 248,
+        "oracle_accuracy_if_either_right": 0.9433
+      },
+      "deberta vs cnn": {
+        "both_wrong": 303,
+        "only_first_wrong": 125,
+        "only_second_wrong": 245,
+        "oracle_accuracy_if_either_right": 0.9337
+      },
+      "deberta vs bilstm": {
+        "both_wrong": 296,
+        "only_first_wrong": 132,
+        "only_second_wrong": 231,
+        "oracle_accuracy_if_either_right": 0.9352
+      },
       "bert vs classical": {
         "both_wrong": 271,
         "only_first_wrong": 185,
         "only_second_wrong": 236,
         "oracle_accuracy_if_either_right": 0.9407
+      },
+      "bert vs cnn": {
+        "both_wrong": 329,
+        "only_first_wrong": 127,
+        "only_second_wrong": 219,
+        "oracle_accuracy_if_either_right": 0.928
+      },
+      "bert vs bilstm": {
+        "both_wrong": 332,
+        "only_first_wrong": 124,
+        "only_second_wrong": 195,
+        "oracle_accuracy_if_either_right": 0.9274
+      },
+      "classical vs cnn": {
+        "both_wrong": 306,
+        "only_first_wrong": 201,
+        "only_second_wrong": 242,
+        "oracle_accuracy_if_either_right": 0.933
+      },
+      "classical vs bilstm": {
+        "both_wrong": 313,
+        "only_first_wrong": 194,
+        "only_second_wrong": 214,
+        "oracle_accuracy_if_either_right": 0.9315
+      },
+      "cnn vs bilstm": {
+        "both_wrong": 394,
+        "only_first_wrong": 154,
+        "only_second_wrong": 133,
+        "oracle_accuracy_if_either_right": 0.9138
       }
     }
   }

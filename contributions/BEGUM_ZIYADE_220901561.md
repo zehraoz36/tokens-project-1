@@ -28,7 +28,8 @@ The detailed tables are in the README. In short:
 - **Benchmark.** Running the paper's protocol on our data reproduces its classifier ranking, and the published F-measures match our non-bug-class F1 within 0.015 for all five classifiers. Our tuned models clearly exceed the paper's best configuration on the same projects.
 - **Error analysis.** Non-bug reports that use failure vocabulary are misclassified 45.5% of the time (13.8% without it); non-bug reports filed with the bug template 55.5%. Weblate is the weakest project because it is the only one with more non-bugs than bugs.
 - **Feature engineering.** TF-IDF weighting lifts Naive Bayes from 63.1 to 80.5 Macro-F1 (random split). Larger vocabularies, character n-grams, hand-crafted features and a tuned decision threshold raise the best classical model from 83.5 to 85.6 (random) and from 84.1 to 87.1 (unseen project), closing about half of the gap to the transformers.
-- **Neural baselines.** TextCNN and BiLSTM scripts are tested on small samples; the full runs are done with `colab_runs.ipynb`. <!-- TODO: add their scores after the Colab run -->
+- **Neural baselines.** On a Colab T4 GPU, TextCNN and BiLSTM with GloVe reach 85.2 / 85.7 Macro-F1 on the random split and 85.8 / 86.5 on the unseen project, on par with the tuned classical models and 2 to 3 points below the transformers.
+- **DeBERTa re-run.** Re-ran DeBERTa-v3-small with the new prediction export (87.46 / 89.19 Macro-F1, within 0.2 points of the first run) so that its errors can be analysed too.
 
 ## Use of AI assistance
 
