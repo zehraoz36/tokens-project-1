@@ -72,6 +72,17 @@ All values are percentages. \* The best of the configurations in [Additional exp
 
 ![Confusion matrices of DeBERTa-v3-small](results/figures/confusion_matrices.png)
 
+**Per-class precision and recall of the transformers** (%, test set)
+
+| Model | Scenario | Non-bug precision | Non-bug recall | Bug precision | Bug recall |
+|---|---|---:|---:|---:|---:|
+| BERT-base | random | 82.9 | 81.2 | 93.2 | 93.9 |
+| BERT-base | unseen project | 89.8 | 78.4 | 90.1 | 95.7 |
+| DeBERTa-v3-small | random | 85.0 | 78.0 | 92.2 | 95.0 |
+| DeBERTa-v3-small | unseen project | 87.9 | 82.7 | 91.8 | 94.5 |
+
+Non-bug recall is the weak spot of every model: about one non-bug report in five is labelled as a bug. Precision and recall of all other models are in the matching `*metrics.json` files.
+
 ## Additional experiments: feature engineering, class imbalance, ensemble
 
 `experiments.py` explores the classical side further. Every hyperparameter (alpha, C, the decision threshold, the ensemble threshold) is chosen on the validation set; the test set is scored once. Full grids: `results/experiments_metrics.json`.
@@ -81,9 +92,9 @@ All values are percentages. \* The best of the configurations in [Additional exp
 | Naive Bayes | word counts, 5k words, alpha tuned | 63.1 | 54.8 |
 | | **TF-IDF**, 50k word 1-2 grams | **80.5** | **83.3** |
 | | Complement NB, TF-IDF | 77.1 | 78.5 |
-| Features (logistic regression) | TF-IDF 5k word 1-2 grams (as in `benchmark.py`, C tuned) | 83.6 | 84.0 |
-| | TF-IDF 50k word 1-2 grams, sublinear tf | 84.7 | 85.9 |
-| | character 2-5 grams | 84.7 | 85.6 |
+| Features (logistic regression) | TF-IDF 5k word 1-2 grams (as in `benchmark.py`, C tuned) | 83.5 | 84.0 |
+| | TF-IDF 50k word 1-2 grams, sublinear tf | 84.6 | 85.9 |
+| | character 2-5 grams | 84.6 | 85.6 |
 | | words + characters | 84.8 | 85.6 |
 | | words + characters + 13 hand-crafted features | 85.1 | 86.5 |
 | Class imbalance | same, class-weighted loss | 84.9 | 86.4 |
