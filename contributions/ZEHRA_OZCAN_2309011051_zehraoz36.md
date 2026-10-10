@@ -65,14 +65,20 @@ Google Colab, Tesla T4, Python 3.13.15, torch 2.11.0+cu130, transformers 5.18.0.
 
 ## 4. Test results
 
-The test set was evaluated once, with the selected checkpoint.
+These are the results of my original run (commit `28de307`). The test set was
+evaluated once, with the selected checkpoint.
+
+Begüm later re-ran the script after adding a prediction export. The files now in
+`results/` come from that re-run and differ by 0.1 to 0.2 points (90.45 / 87.46
+on the random split, 90.63 / 89.19 on the cross-project split). Seed and settings
+were identical, so the difference is run-to-run variation on the GPU.
 
 | Scenario | Accuracy (%) | Macro-F1 (%) | Bug F1 (%) |
 |---|---:|---:|---:|
 | Random | 90.55 | 87.58 | 93.66 |
 | Cross-project (SciPy) | 90.77 | 89.37 | 93.22 |
 
-Per-class results (from `results/transformer_metrics.json`):
+Per-class results of my original run:
 
 | Scenario | Class | Precision | Recall | F1 | Confusion counts |
 |---|---|---:|---:|---:|---|
@@ -86,7 +92,7 @@ labelled as bugs more often than the reverse.
 
 ## 5. Comparison with the other methods
 
-All numbers are from the repository.
+Baseline numbers are from the repository; the DeBERTa numbers are from my original run.
 
 | Scenario | Model | Accuracy (%) | Macro-F1 (%) |
 |---|---|---:|---:|
@@ -107,11 +113,6 @@ so differences of a few tenths of a point should not be over-interpreted.
 
 One training seed, inputs truncated to 256 tokens, and the cross-project test
 covers SciPy only.
-
-## Use of AI assistance
-
-The script was developed with the help of an AI assistant (Claude). I ran,
-tested and debugged it and produced the results myself.
 
 ## Files
 
