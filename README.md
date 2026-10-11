@@ -329,7 +329,7 @@ Download the files written to `results/` before the Colab session ends.
 | Begüm Ziyade | 220901561 | |
 | Yunus Emre Demirel | 210911053 | |
 | Tuana Harmankaya | 2309111029 | [@tia88na](https://github.com/tia88na) |
-| Ece Mina Örenler | 220901539 | |
+| Ece Mina Örenler | 220901539 | [@eceorenler](https://github.com/eceorenler) |
 | Zehra Özcan | 2309011051 | [@zehraoz36](https://github.com/zehraoz36) |
 
 Individual contributions are described in `contributions/`.
