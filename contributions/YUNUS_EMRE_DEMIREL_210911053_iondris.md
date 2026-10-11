@@ -150,4 +150,4 @@ Read, not modified:
 
 ## Use of AI assistance
 
-The verification script and this contribution text were drafted with the help of an AI assistant (Claude). Yunus manually reviewed all 20 cases and reviewed the resulting outputs and final contribution materials.
+The verification script and this contribution text were drafted with the help of an AI assistant. I manually reviewed all 20 cases and reviewed the resulting outputs and final contribution materials.
