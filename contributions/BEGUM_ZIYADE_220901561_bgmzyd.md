@@ -1,7 +1,7 @@
 # Begüm Ziyade
 
 - Student ID: 220901561
-- GitHub: <!-- TODO: [@username](https://github.com/username) -->
+- GitHub: [@bgmzyd](https://github.com/bgmzyd)
 
 ## Summary
 

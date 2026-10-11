@@ -326,8 +326,8 @@ Download the files written to `results/` before the Colab session ends.
 
 | Name | Student ID | GitHub |
 |---|---|---|
-| Begüm Ziyade | 220901561 | |
-| Yunus Emre Demirel | 210911053 | |
+| Begüm Ziyade | 220901561 | [@bgmzyd](https://github.com/bgmzyd) |
+| Yunus Emre Demirel | 210911053 | [@iondris](https://github.com/iondris) |
 | Tuana Harmankaya | 2309111029 | [@tia88na](https://github.com/tia88na) |
 | Ece Mina Örenler | 220901539 | [@eceorenler](https://github.com/eceorenler) |
 | Zehra Özcan | 2309011051 | [@zehraoz36](https://github.com/zehraoz36) |
