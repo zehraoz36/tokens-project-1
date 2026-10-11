@@ -5,7 +5,7 @@
 
 ## Summary
 
-Yunus's contribution is a BERT-specific verification and qualitative audit of the existing saved BERT predictions and results. **Yunus did not train or implement BERT.**
+Yunus's contribution is a BERT-specific verification and qualitative audit of the existing saved BERT predictions and results.
 
 Attribution boundaries:
 
